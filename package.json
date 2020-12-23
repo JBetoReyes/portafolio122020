@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/JBetoReyes/portafolio122020/issues"
   },
-  "homepage": "https://github.com/JBetoReyes/portafolio122020#readme"
+  "homepage": "https://github.com/JBetoReyes/portafolio122020#readme",
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  }
 }
