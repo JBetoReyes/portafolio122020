@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env TS_NODE_PROJECT=tsconfig.tooling.json ts-node scripts/start"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,10 @@
   },
   "homepage": "https://github.com/JBetoReyes/portafolio122020#readme",
   "devDependencies": {
+    "@types/node": "^14.14.16",
+    "cross-env": "^7.0.3",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
   }
 }
