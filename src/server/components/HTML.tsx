@@ -1,10 +1,15 @@
 import React from 'react';
 
-type Props = {
-    children: React.ReactNode
+type ScriptTag = {
+  src: string;
 };
 
-const HTML = ({ children }: Props): JSX.Element => {
+type Props = {
+    children: React.ReactNode,
+    scripts: ScriptTag[]
+};
+
+const HTML = ({ children, scripts = [] }: Props): JSX.Element => {
     return (
         <html>
             <head>
@@ -12,6 +17,13 @@ const HTML = ({ children }: Props): JSX.Element => {
             </head>
             <body>
                 <div id="app">{children}</div>
+                {
+                  scripts.filter(Boolean).map(({ src }) => {
+                    return (
+                      <script key={src} src={src} />
+                    );
+                  })
+                }
             </body>
         </html>
     )

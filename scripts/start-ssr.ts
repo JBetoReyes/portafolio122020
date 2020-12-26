@@ -7,15 +7,36 @@ import paths from "../config/paths";
 import getConfig from "../config/webpack.config.ts";
 import { logMessage, compilerPromise } from "./utils";
 
+const {
+  PORT: port,
+  DEV_SERVER_HOST: devServerHost,
+  WEBPACK_PORT: webpackPort,
+} = process.env;
+
 const webpackConfig = getConfig(process.env.NODE_ENV || "development");
 
 const app = express();
 
-const APP_PORT = 3001;
-
 (async () => {
+  const WEBPACK_PORT =
+    webpackPort || !isNaN(Number(port)) ? Number(port) + 1 : 8501;
+
+  const DEV_SERVER_HOST = devServerHost ? devServerHost : "http://localhost";
+  const publicPath = paths.publicPath;
   const [clientConfig, serverConfig] = webpackConfig;
-  console.log(JSON.stringify(serverConfig, undefined, 4));
+  clientConfig.output.publicPath = [
+    `${DEV_SERVER_HOST}:${WEBPACK_PORT}`,
+    publicPath,
+  ]
+    .join("/")
+    .replace(/([^:+])\/+/g, "$1/");
+  serverConfig.output.publicPath = [
+    `${DEV_SERVER_HOST}:${WEBPACK_PORT}`,
+    publicPath,
+  ]
+    .join("/")
+    .replace(/([^:+])\/+/g, "$1/");
+
   const multiCompiler = webpack([clientConfig, serverConfig]);
 
   const serverCompiler = multiCompiler.compilers.find(
@@ -34,7 +55,7 @@ const APP_PORT = 3001;
     stats: clientConfig.stats,
   };
 
-  app.use((req, res, next) => {
+  app.use((_req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     return next();
   });
@@ -49,8 +70,8 @@ const APP_PORT = 3001;
 
   app.use("/static", express.static(paths.clientBuild));
 
-  app.listen(APP_PORT, () => {
-    console.log(`App running on port ${APP_PORT}`);
+  app.listen(WEBPACK_PORT, () => {
+    console.log(`App running on port ${WEBPACK_PORT}`);
   });
 
   serverCompiler.watch(watchOptions, (err, stats) => {
