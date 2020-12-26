@@ -1,7 +1,7 @@
-import path from 'path';
-import paths from '../paths';
+import path from "path";
+import paths from "../paths";
 
 export default {
-  extensions: ['.js', '.json', '.jsx', '.tsx', '.css'],
+  extensions: [".js", ".json", ".jsx", ".ts", ".tsx", ".css"],
   modules: paths.resolveModules,
 };
