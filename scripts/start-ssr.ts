@@ -23,10 +23,13 @@ const app = express();
 (async () => {
   const WEBPACK_PORT =
     webpackPort || !isNaN(Number(port)) ? Number(port) + 1 : 8501;
-  console.log('devServerHost: ', devServerHost);
   const DEV_SERVER_HOST = devServerHost ? devServerHost : "http://localhost";
   const publicPath = paths.publicPath;
   const [clientConfig, serverConfig] = webpackConfig;
+  clientConfig.entry.bundle = [
+    `webpack-hot-middleware/client?path=${DEV_SERVER_HOST}:${WEBPACK_PORT}/__webpack_hmr`,
+    ...clientConfig.entry.bundle,
+];
   clientConfig.output.publicPath = [
     `${DEV_SERVER_HOST}:${WEBPACK_PORT}`,
     publicPath,
@@ -66,6 +69,8 @@ const app = express();
   app.use(
     webpackDevMiddleware(clientCompiler, {
       publicPath: clientConfig.output.publicPath,
+      stats: clientConfig.stats,
+      watchOptions,
     })
   );
 

@@ -3,7 +3,7 @@ import About from './components/About';
 
 const Home = (): JSX.Element => {
     return (
-        <div className="">
+        <div className="theme-default">
             <About />
         </div>
     );
