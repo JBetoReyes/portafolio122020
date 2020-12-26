@@ -1,11 +1,14 @@
 import webpack from "webpack";
 import express from "express";
 import nodemon from "nodemon";
+import dotenv from 'dotenv';
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import paths from "../config/paths";
 import getConfig from "../config/webpack.config.ts";
 import { logMessage, compilerPromise } from "./utils";
+
+dotenv.config();
 
 const {
   PORT: port,
@@ -20,7 +23,7 @@ const app = express();
 (async () => {
   const WEBPACK_PORT =
     webpackPort || !isNaN(Number(port)) ? Number(port) + 1 : 8501;
-
+  console.log('devServerHost: ', devServerHost);
   const DEV_SERVER_HOST = devServerHost ? devServerHost : "http://localhost";
   const publicPath = paths.publicPath;
   const [clientConfig, serverConfig] = webpackConfig;

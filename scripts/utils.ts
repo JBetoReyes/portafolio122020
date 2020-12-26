@@ -12,7 +12,7 @@ export const logMessage = (message: string, level: string = 'info') => {
     console.log(`[${new Date().toISOString()}]`, chalk[color](message));
 }
 
-export const compilerPromise = (name: string, compiler: any) => {
+export const compilerPromise = (name: string, compiler: any): Promise<void> => {
   return new Promise((resolve, reject) => {
     compiler.hooks.compile.tap(name, ()=> {
       logMessage(`[${name}] Compiling`);

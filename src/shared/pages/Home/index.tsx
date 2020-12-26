@@ -1,8 +1,11 @@
 import React from 'react';
+import About from './components/About';
 
 const Home = (): JSX.Element => {
     return (
-        <div>Home Component</div>
+        <div className="">
+            <About />
+        </div>
     );
 }
 

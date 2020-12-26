@@ -4,16 +4,26 @@ type ScriptTag = {
   src: string;
 };
 
-type Props = {
-    children: React.ReactNode,
-    scripts: ScriptTag[]
+type LinkTag = {
+  href: string;
 };
 
-const HTML = ({ children, scripts = [] }: Props): JSX.Element => {
+type Props = {
+    children: React.ReactNode,
+    scripts: ScriptTag[],
+    css: LinkTag[],
+};
+
+const HTML = ({ children, scripts = [], css = [] }: Props): JSX.Element => {
     return (
         <html>
             <head>
-                <title>Jose Reyes</title>
+              <meta charSet="utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              {css.filter(Boolean).map(({href}) => (
+                <link key={href} rel="stylesheet" href={href} />
+            ))}
+              <title>Jose Reyes</title>
             </head>
             <body>
                 <div id="app">{children}</div>

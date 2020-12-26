@@ -1,7 +1,7 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
-const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
+const cssRegex = /\.s?css$/;
+const cssModuleRegex = /\.module\.s?css$/;
 
 const cssModuleLoaderClient = {
   test: cssModuleRegex,
@@ -17,13 +17,23 @@ const cssModuleLoaderClient = {
   ],
 };
 
+const cssLoaderServer = {
+    test: cssRegex,
+    use: [MiniCssExtractPlugin.loader, require.resolve('css-loader'), require.resolve('sass-loader')],
+    // Don't consider CSS imports dead code even if the
+    // containing package claims to have no side effects.
+    // Remove this when webpack adds a warning or an error for this.
+    // See https://github.com/webpack/webpack/issues/6571
+    sideEffects: true,
+};
+
 const cssLoaderClient = {
   test: cssRegex,
   exclude: cssModuleRegex,
   use: [
-    require.resolve("css-hot-loader"),
     MiniCssExtractPlugin.loader,
     require.resolve("css-loader"),
+    require.resolve('sass-loader'),
   ],
 };
 
@@ -59,7 +69,7 @@ const fileLoaderClient = {
 
 const server = [
   {
-    oneOf: [babelLoader],
+    oneOf: [babelLoader, cssLoaderServer],
   },
 ];
 

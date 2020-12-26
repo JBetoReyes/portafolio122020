@@ -21,7 +21,8 @@ const config = {
     rules: clientLoaders
   },
   resolve: { ...resolvers },
-  plugins: [ ...sharedPlugins, ...clientPlugins ]
+  plugins: [ ...sharedPlugins, ...clientPlugins ],
+  stats: 'verbose'
 };
 
 export default config;
