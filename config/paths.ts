@@ -21,7 +21,6 @@ paths.resolveModules = [
     paths.srcServer as string,
     paths.srcShared as string,
     paths.src as string,
-    paths.config as string,
     'node_modules'
 ];
 
