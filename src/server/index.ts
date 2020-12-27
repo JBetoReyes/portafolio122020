@@ -4,6 +4,7 @@ import chalk from "chalk";
 import manifestHelpers from "express-manifest-helpers";
 import { join } from "path";
 import paths from "../../config/paths";
+import addStore from "./middlewares/addStore";
 import serverRenderer from "./middlewares/serverRenderer";
 
 dotenv.config();
@@ -20,6 +21,8 @@ app.use(
     manifestPath: `${manifestPath}/manifest.json`,
   })
 );
+
+app.use(addStore);
 
 app.use(serverRenderer);
 

@@ -67,9 +67,22 @@ const fileLoaderClient = {
   },
 };
 
+const fileLoaderServer = {
+    exclude: [/\.(js|tsx|ts|tsx|css|mjs|html|ejs|json)$/],
+    use: [
+        {
+            loader: require.resolve('file-loader'),
+            options: {
+                name: 'assets/[name].[hash:8].[ext]',
+                emitFile: false,
+            },
+        },
+    ],
+};
+
 const server = [
   {
-    oneOf: [babelLoader, cssLoaderServer],
+    oneOf: [babelLoader, cssLoaderServer, fileLoaderServer],
   },
 ];
 
