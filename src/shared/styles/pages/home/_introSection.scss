@@ -142,4 +142,22 @@ $mw: mac-window;
     @include box-shadow;
     border-radius: 5px 5px 0 0;
   }
+
+  @media screen and (max-width: 800px) {
+    .#{$mw} {
+      grid-template-columns: 1fr !important;
+      grid-template-areas: 
+        'nav'
+        'left'
+        'right'
+      !important;
+    }
+    .right-wrapper, .left-wrapper {
+      justify-content: center;
+    }
+    .right-wrapper {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }
