@@ -22,7 +22,6 @@ const config = {
   },
   resolve: { ...resolvers },
   plugins: [ ...sharedPlugins, ...clientPlugins ],
-  stats: 'verbose'
 };
 
 export default config;
