@@ -1,0 +1,28 @@
+@import "../themes/index.scss";
+
+.main-section {
+  overflow: auto;
+  &:nth-child(odd) {
+    @include themify($themes) {
+      background-color: themed("section-odd-color");
+      border-color: themed("primary-border-color");
+    }
+  }
+  &:nth-child(even) {
+    @include themify($themes) {
+      background-color: themed("section-even-color");
+      border-color: themed("primary-border-color");
+    }
+  }
+
+  &__container {
+    width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 1200px) {
+    &__container {
+      width: 95%;
+    }
+  }
+}

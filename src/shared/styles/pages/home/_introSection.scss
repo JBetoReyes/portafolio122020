@@ -1,0 +1,145 @@
+@import "../../utils/mixins";
+@import "../../themes/index";
+
+$mw: mac-window;
+
+.intro-section__container {
+  .greet-wrapper {
+    height: 200px;
+    @include flex-center;
+  }
+
+  .#{$mw} {
+    @include box-shadow;
+    border-radius: 5px 5px 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 20px;
+    grid-template-areas:
+      "nav    nav"
+      "right left";
+    @include themify($themes) {
+      background-color: themed("section-even-color");
+    }
+
+    &__header {
+      border-radius: 5px 5px 0 0;
+      border: 1px solid;
+      display: flex;
+      justify-content: space-between;
+      grid-area: nav;
+      @include themify($themes) {
+        border-color: themed("primary-border-color");
+      }
+      .#{$mw}__buttons {
+        display: flex;
+        padding: 10px;
+      }
+      .#{$mw}__button {
+        @include size(15);
+        margin: 5px;
+        border-radius: 50%;
+        &:nth-child(1) {
+          background-color: #fc6058;
+        }
+        &:nth-child(2) {
+          background-color: #fec02f;
+        }
+        &:nth-child(3) {
+          background-color: #2aca3e;
+        }
+      }
+    }
+
+    .left-wrapper {
+      grid-area: right;
+      margin: 0 auto;
+      padding: 50px 0 50px 0;
+      &__profile-wrapper {
+        overflow: hidden;
+        @include size(200);
+        &--img {
+          border-radius: 50%;
+          background-color: white;
+          height: 100%;
+          overflow: hidden;
+        }
+      }
+      &__theme {
+        &-title {
+          text-align: center;
+        }
+        &-dots {
+          @include flex-center;
+        }
+        &-dot {
+          @include size(30);
+          border-radius: 50%;
+          border: 2px solid;
+          margin: 0 10px 0 0;
+          &:hover {
+            border-width: 3px;
+            cursor: pointer;
+            transform: scale(1.5, 1.5);
+          }
+          &:nth-child(2) {
+            background-color: #192734;
+          }
+          @include themify($themes) {
+            border-color: themed("primary-text-color");
+          }
+        }
+        &-dot-light-mode {
+          background-color: white;
+        }
+      }
+    }
+
+    .right-wrapper {
+      grid-area: left;
+      padding: 50px 0 50px 0;
+      width: auto;
+      &__about-wrapper {
+        width: 300px;
+        @include themify($themes) {
+          background-color: themed("preview-shadow");
+        }
+        &--shadow {
+          border: 1.5px solid #17a2b8;
+          padding: 15px;
+          position: relative;
+          transform: translate(50px, 50px);
+          @include themify($themes) {
+            background-color: themed("preview-background");
+          }
+        }
+        &--corner {
+          @include size(7);
+          border-radius: 50%;
+          border: 1.5px solid #17a2b8;
+          background-color: #ffffff;
+          position: absolute;
+          &:nth-child(1) {
+            top: -4px;
+            left: -4px;
+          }
+          &:nth-child(2) {
+            top: -4px;
+            right: -4px;
+          }
+          &:nth-child(3) {
+            bottom: -4px;
+            left: -4px;
+          }
+          &:nth-child(4) {
+            bottom: -4px;
+            right: -4px;
+          }
+        }
+      }
+    }
+
+    @include box-shadow;
+    border-radius: 5px 5px 0 0;
+  }
+}

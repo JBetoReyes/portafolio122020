@@ -1,0 +1,22 @@
+// Reset/normalize
+$link-color: #17abb8;
+
+* {
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: $link-color;
+}
+
+ul {
+    list-style: none;
+}
