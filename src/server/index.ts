@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import chalk from "chalk";
 import manifestHelpers from "express-manifest-helpers";
 import { join } from "path";
+import cors from "cors";
+import bodyParser from "body-parser";
 import paths from "../../config/paths";
 import addStore from "./middlewares/addStore";
 import serverRenderer from "./middlewares/serverRenderer";
@@ -21,6 +23,11 @@ app.use(
     manifestPath: `${manifestPath}/manifest.json`,
   })
 );
+
+app.use(cors());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(addStore);
 

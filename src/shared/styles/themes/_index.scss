@@ -3,6 +3,7 @@
 
 $themes: (
   default: $default,
+  dark: $dark,
 );
 
 @mixin themify($themes: $themes) {

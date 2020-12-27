@@ -1,7 +1,24 @@
 import React from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import profile from  '../../../assets/profile-default.png';
+import { changeTheme } from '../../../store/actions/themeActions';
 
-const IntroSection = () => {
+const mapDispatch = {
+    changeTheme: changeTheme
+};
+
+const connector = connect(null, mapDispatch);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type Props = PropsFromRedux;
+
+const IntroSection = (props: Props) => {
+    const handleChangeTheme = (theme: string) => {
+        return () => {
+            props.changeTheme(theme);
+        };
+    };
     return (
         <div className="main-section">
             <div className="main-section__container">
@@ -32,12 +49,12 @@ const IntroSection = () => {
                                 <div className="left-wrapper__theme-dots">
                                     <div
                                     className="left-wrapper__theme-dot left-wrapper__theme-dot-light-mode"
-                                    //   onClick={handleChangeTheme('default')}
+                                    onClick={handleChangeTheme('default')}
                                     role="menuitem"
                                     />
                                     <div
                                     className="left-wrapper__theme-dot"
-                                    //   onClick={handleChangeTheme('dark')}
+                                    onClick={handleChangeTheme('dark')}
                                     role="menuitem"
                                     />
                                 </div>
@@ -66,4 +83,4 @@ const IntroSection = () => {
     );
 };
 
-export default IntroSection;
+export default connector(IntroSection);

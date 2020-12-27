@@ -1,7 +1,12 @@
 import configureStore from "../../shared/store";
 
-const addStore = (_req, res, next) => {
-  res.locals.store = configureStore({});
+const addStore = (req, res, next) => {
+  const { theme } = req.query;
+  res.locals.store = configureStore({
+    initialState: {
+      theme,
+    },
+  });
   next();
 };
 
