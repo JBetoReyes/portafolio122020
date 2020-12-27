@@ -1,0 +1,26 @@
+@import '../../themes/index';
+
+.about-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 100px;
+}
+
+.social-links {
+  a {
+    display: inline-block;
+    padding: 5px;
+  }
+}
+
+#skills {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  @include themify($themes) {
+    background-color: themed('preview-shadow');
+  }
+  ul {
+    width: 50%;
+  }
+}
