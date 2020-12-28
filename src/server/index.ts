@@ -33,9 +33,9 @@ app.use(addStore);
 
 app.use(serverRenderer);
 
-app.listen(8500, () => {
+app.listen(process.env.PORT || 8500, () => {
   console.log(
     `[${new Date().toISOString()}]`,
-    chalk.blue(`App is running http://localhost:8500`)
+    chalk.blue(`App is running: http://localhost:${process.env.PORT || 8500}`)
   );
 });
