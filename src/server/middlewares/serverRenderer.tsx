@@ -5,7 +5,7 @@ import HTML from "../components/HTML";
 import App from "../../shared/App";
 
 const serverRenderer = (_req, res) => {
-  const scripts = [{ src: res.locals.assetPath("bundle.js") }];
+  const scripts = [{ src: res.locals.assetPath("bundle.js")}, { src: res.locals.assetPath("vendor.js") }];
   const css = [{ href: res.locals.assetPath("bundle.css") }];
 
   const app = renderToString(

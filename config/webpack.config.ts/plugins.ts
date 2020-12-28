@@ -2,6 +2,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
 import CaseSensitivePlugin from "case-sensitive-paths-webpack-plugin";
+import CompressionWebpackPlugin from "compression-webpack-plugin";
 import { join } from "path";
 import webpack from "webpack";
 import paths from "../paths";
